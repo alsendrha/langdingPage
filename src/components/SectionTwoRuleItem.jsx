@@ -1,6 +1,5 @@
-import "./RuleItem.css";
-
-const RuleItem = ({ itemList, itemId }) => {
+import React from "react";
+const SectionTwoRuleItem = ({ itemList, itemId }) => {
   return (
     <div>
       <input type="checkbox" id={itemId} className="card_check" />
@@ -31,4 +30,4 @@ const RuleItem = ({ itemList, itemId }) => {
   );
 };
 
-export default RuleItem;
+export default SectionTwoRuleItem;

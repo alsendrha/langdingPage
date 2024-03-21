@@ -1,11 +1,20 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 import "./App.css";
 import RuleItem from "./components/RuleItem";
-import { itemList } from "./data/SectionOne";
+import SectionTwoRuleItem from "./components/SectionTwoRuleItem";
+import { itemList, sectionTwoItemList } from "./data/SectionText";
 
 function App() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
     <div>
+      <motion.div className="progress_bar" style={{ scaleX }} />
       <section className="top_image">
         <div className="top_title_container">
           <motion.div
@@ -72,12 +81,74 @@ function App() {
             {itemList.map((item, index) => (
               <div key={index}>
                 <motion.div
-                  initial={{ y: 100, opacity: 0 }}
+                  initial={{ y: 300, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 2, ease: "linear" }}
+                  transition={{ type: "spring", duration: 1, ease: "linear" }}
                   viewport={{ once: true }}
                 >
-                  <RuleItem itemList={item} />
+                  <RuleItem itemList={item} itemId={`item_${index}}`} />
+                </motion.div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section>
+        <div className="section_two">
+          <div className="section_two_white_box">
+            <div className="section_two_white_box_text_container">
+              <motion.div
+                initial={{ y: 100, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 1 }}
+                viewport={{ once: true }}
+              >
+                <p className="section_two_white_box_text_title">
+                  행복한 생활을 위한 활동 제안
+                </p>
+              </motion.div>
+              <div className="section_two_white_box_text_sub_title_container">
+                <motion.div
+                  initial={{ y: 100, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 1 }}
+                  viewport={{ once: true }}
+                >
+                  <p className="section_two_white_box_text_sub_title">
+                    반려동물과 행복한 생황을 위한 황동제한 3가지를
+                  </p>
+                  <p className="section_two_white_box_text_sub_title">
+                    함께 알아봐요
+                  </p>
+                </motion.div>
+              </div>
+            </div>
+            <div className="section_two_box_in_image">
+              <div className="section_two_green_box"></div>
+              <div className="section_two_image_box">
+                <img
+                  className="section_two_image"
+                  src="/images/section_two.jpg"
+                  alt="첫번째 이미지"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="section_two_item_container">
+          <div className="section_two_rule_item_container">
+            {sectionTwoItemList.map((item, index) => (
+              <div key={index}>
+                <motion.div
+                  initial={{ y: 100, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 1, ease: "linear" }}
+                  viewport={{ once: true }}
+                >
+                  <SectionTwoRuleItem
+                    itemList={item}
+                    itemId={`section_two_item_${index}}`}
+                  />
                 </motion.div>
               </div>
             ))}
