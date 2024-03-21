@@ -32,6 +32,13 @@
   font-size: 50px;
 }
 
+.top_main_title{
+  color: white;
+  font-weight: bold;
+  font-size: 72px;
+  margin-bottom: 50px;
+}
+
 .top_title_1 {
   color: white;
 }

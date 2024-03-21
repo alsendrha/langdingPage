@@ -18,6 +18,14 @@ function App() {
       <section className="top_image">
         <div className="top_title_container">
           <motion.div
+            initial={{ x: 0, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ delay: 2.5, duration: 3 }}
+            viewport={{ once: true }}
+          >
+            <p className="top_main_title">반려동물과 행복한 시간</p>
+          </motion.div>
+          <motion.div
             initial={{ x: -100, opacity: 0 }}
             whileInView={{ x: 0, opacity: 0.5 }}
             transition={{ duration: 2 }}
@@ -79,16 +87,29 @@ function App() {
         <div className="item_container">
           <div className="rule_item_container">
             {itemList.map((item, index) => (
-              <div key={index}>
-                <motion.div
-                  initial={{ y: 300, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ type: "spring", duration: 1, ease: "linear" }}
-                  viewport={{ once: true }}
-                >
-                  <RuleItem itemList={item} itemId={`item_${index}}`} />
-                </motion.div>
-              </div>
+              <motion.div
+                key={index}
+                initial={{ y: 300, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{
+                  type: "spring",
+                  delay:
+                    index === 0
+                      ? 0
+                      : index === 1
+                      ? 0.2
+                      : index === 2
+                      ? 0.4
+                      : index === 3
+                      ? 0
+                      : 0.2,
+                  duration: 1,
+                  ease: "linear",
+                }}
+                viewport={{ once: true }}
+              >
+                <RuleItem itemList={item} itemId={`item_${index}}`} />
+              </motion.div>
             ))}
           </div>
         </div>
@@ -138,19 +159,26 @@ function App() {
         <div className="section_two_item_container">
           <div className="section_two_rule_item_container">
             {sectionTwoItemList.map((item, index) => (
-              <div key={index}>
-                <motion.div
-                  initial={{ y: 100, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 1, ease: "linear" }}
-                  viewport={{ once: true }}
-                >
-                  <SectionTwoRuleItem
-                    itemList={item}
-                    itemId={`section_two_item_${index}}`}
-                  />
-                </motion.div>
-              </div>
+              <motion.div
+                key={index}
+                initial={{
+                  y: 300,
+                  opacity: 0,
+                }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{
+                  type: "spring",
+                  delay: index === 0 ? 0 : index === 1 ? 0.2 : 0.4,
+                  duration: 1,
+                  ease: "linear",
+                }}
+                viewport={{ once: true }}
+              >
+                <SectionTwoRuleItem
+                  itemList={item}
+                  itemId={`section_two_item_${index}}`}
+                />
+              </motion.div>
             ))}
           </div>
         </div>
