@@ -1,26 +1,81 @@
-import { motion, useScroll, useSpring } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  useMotionValueEvent,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import "./App.css";
 import RuleItem from "./components/RuleItem";
 import SectionTwoRuleItem from "./components/SectionTwoRuleItem";
 import { itemList, sectionTwoItemList } from "./data/SectionText";
 
 function App() {
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress, scrollY } = useScroll();
+  const scrollAnimation = useAnimation();
+  const scrollText = useAnimation();
+
+  const top = useTransform(scrollY, [0, 2000], ["135px", "135px"]);
+  const height = useTransform(scrollY, [0, 2000], ["20vh", "80vh"]);
+  const width = useTransform(scrollY, [0, 2000], ["10vw", "80vw"]);
+  const testText = useTransform(
+    scrollY,
+    [2000, 2500, 4000, 4200],
+    [0, 1, 1, 0]
+  );
+  const borderRadius = useTransform(scrollY, [0, 2000], ["50%", "0%"]);
+  const isAt8000 = scrollY.get() >= 7990 && scrollY.get() <= 8010;
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   });
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    console.log("스크롤값", scrollY.get());
+    if (latest > 0) {
+      scrollAnimation.start({ backgroundColor: "rgba(255, 255, 255, 1)" });
+      scrollText.start({ opacity: 1 });
+    } else {
+      scrollAnimation.start({ backgroundColor: "rgba(0, 0, 0, 0)" });
+      scrollText.start({ opacity: 0 });
+    }
+  });
 
   return (
     <div>
-      <motion.div className="progress_bar" style={{ scaleX }} />
+      <motion.div
+        className="navbar"
+        animate={scrollAnimation}
+        initial={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
+      >
+        <motion.div animate={scrollText} initial={{ opacity: 0 }}>
+          <div className="logo" onClick={() => scrollTo(top)}>
+            <img src="/images/card_image.png" alt="로고 이미지" />
+          </div>
+        </motion.div>
+        <motion.div
+          className="nav_menu"
+          animate={scrollText}
+          initial={{ opacity: 0 }}
+        >
+          <nav className="nav_menu">
+            <ul>
+              <li>메뉴1</li>
+              <li>메뉴1</li>
+              <li>메뉴1</li>
+              <li>메뉴1</li>
+            </ul>
+          </nav>
+        </motion.div>
+        <motion.div className="progress_bar" style={{ scaleX }} />
+      </motion.div>
       <section className="top_image">
         <div className="top_title_container">
           <motion.div
             initial={{ x: 0, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
-            transition={{ delay: 2.5, duration: 3 }}
+            transition={{ duration: 2 }}
             viewport={{ once: true }}
           >
             <p className="top_main_title">반려동물과 행복한 시간</p>
@@ -36,13 +91,39 @@ function App() {
           <motion.div
             initial={{ x: 0, opacity: 0 }}
             whileInView={{ x: 140, opacity: 0.5 }}
-            transition={{ delay: 1, duration: 2 }}
+            transition={{ duration: 2 }}
             viewport={{ once: true }}
           >
             <p className="top_title_2">특별한 순간들을 기억해보세요.</p>
           </motion.div>
         </div>
         <img src="/images/top_image.png" alt="탑이미지" />
+      </section>
+      <section className="test_section">
+        <div style={{ marginTop: "100px" }}></div>
+        <motion.div
+          initial={{ y: 300, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ type: "spring", delay: 0.5, duration: 1 }}
+          viewport={{ once: true }}
+        >
+          <div className="first_test">
+            {isAt8000 ? null : (
+              <motion.p style={{ opacity: testText }}>안녕하세요</motion.p>
+            )}
+            <motion.img
+              style={{
+                height,
+                borderRadius,
+                width,
+                top,
+                position: "sticky",
+              }}
+              src="/images/asdd.jpeg"
+              alt="테스트 이미지"
+            />
+          </div>
+        </motion.div>
       </section>
       <section>
         <div className="section_one">
@@ -114,7 +195,7 @@ function App() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="section_second">
         <div className="section_two">
           <div className="section_two_white_box">
             <div className="section_two_white_box_text_container">
@@ -183,6 +264,11 @@ function App() {
           </div>
         </div>
       </section>
+      <footer>
+        <div
+          style={{ width: "100%", height: "500px", backgroundColor: "green" }}
+        ></div>
+      </footer>
     </div>
   );
 }
