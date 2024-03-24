@@ -28,6 +28,7 @@ function App() {
   const text2FontWeight = useTransform(scrollY, [15100, 15200], [400, 600]);
   const text3FontWeight = useTransform(scrollY, [17100, 17200], [400, 600]);
   const text4FontWeight = useTransform(scrollY, [19100, 19200], [400, 600]);
+  const lastTextOpacity = useTransform(scrollY, [24000, 24200], [0, 1]);
   const text1Color = useTransform(
     scrollY,
     [13000, 13100],
@@ -137,7 +138,13 @@ function App() {
           viewport={{ once: true }}
         >
           <div className="first_test">
-            <motion.p style={{ opacity: testText, transition: "all 0.5s" }}>
+            <motion.p
+              className="test_text_hello"
+              style={{
+                opacity: testText,
+                transition: "all 0.5s",
+              }}
+            >
               안녕하세요
             </motion.p>
             <motion.img
@@ -150,12 +157,13 @@ function App() {
                 position: "sticky",
                 transition: "all 0.5s",
               }}
-              src="/images/asdd.jpeg"
+              src="/images/scroll_image.jpg"
               alt="테스트 이미지"
             />
-            <div className="none_box"></div>
+            <div className="none_box1"></div>
             <motion.div className="test_box">
               <motion.p
+                className="test_last_text"
                 initial={{ fontWeight: 400, color: "black" }}
                 style={{
                   opacity: text1Opacity,
@@ -164,9 +172,10 @@ function App() {
                   transition: "all 0.5s",
                 }}
               >
-                나는 모션 텍스트1
+                매일 산책하기!
               </motion.p>
               <motion.p
+                className="test_last_text"
                 initial={{ fontWeight: 400, color: "black" }}
                 style={{
                   opacity: text2Opacity,
@@ -175,9 +184,10 @@ function App() {
                   transition: "all 0.5s",
                 }}
               >
-                나는 모션 텍스트2
+                매일 놀아주기!
               </motion.p>
               <motion.p
+                className="test_last_text"
                 initial={{ fontWeight: 400, color: "black" }}
                 style={{
                   opacity: text3Opacity,
@@ -186,9 +196,10 @@ function App() {
                   transition: "all 0.5s",
                 }}
               >
-                나는 모션 텍스트3
+                매일 밥주기!
               </motion.p>
               <motion.p
+                className="test_last_text"
                 initial={{ fontWeight: 400, color: "black" }}
                 style={{
                   opacity: text4Opacity,
@@ -197,11 +208,19 @@ function App() {
                   transition: "all 0.5s",
                 }}
               >
-                나는 모션 텍스트4
+                매일 똥치워주기!
               </motion.p>
             </motion.div>
-            <div className="none_box"></div>
-            <div className="last_container"></div>
+            <div className="last_container">
+              <motion.p
+                className="last_image_text"
+                style={{ opacity: lastTextOpacity, transition: "all 0.5s" }}
+              >
+                진짜냥?!
+              </motion.p>
+              <img src="/images/background.jpg" alt="배경이미지" />
+              {/* <img src="/images/background.jpg" alt="배경이미지" /> */}
+            </div>
           </div>
         </motion.div>
       </section>
