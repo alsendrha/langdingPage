@@ -17,15 +17,44 @@ function App() {
   const scrollText = useAnimation();
 
   const top = useTransform(scrollY, [0, 2000], ["135px", "135px"]);
-  const height = useTransform(scrollY, [0, 2000], ["20vh", "80vh"]);
-  const width = useTransform(scrollY, [0, 2000], ["10vw", "80vw"]);
+  const height = useTransform(scrollY, [780, 2000], ["20vh", "60vh"]);
+  const width = useTransform(scrollY, [780, 2000], ["10vw", "50vw"]);
+  const right = useTransform(scrollY, [3000, 4000], ["0%", "47%"]);
+  const text1Opacity = useTransform(scrollY, [5500, 5600], [0, 1]);
+  const text2Opacity = useTransform(scrollY, [7600, 7700], [0, 1]);
+  const text3Opacity = useTransform(scrollY, [9700, 9800], [0, 1]);
+  const text4Opacity = useTransform(scrollY, [11900, 12000], [0, 1]);
+  const text1FontWeight = useTransform(scrollY, [13000, 13100], [400, 600]);
+  const text2FontWeight = useTransform(scrollY, [15100, 15200], [400, 600]);
+  const text3FontWeight = useTransform(scrollY, [17100, 17200], [400, 600]);
+  const text4FontWeight = useTransform(scrollY, [19100, 19200], [400, 600]);
+  const text1Color = useTransform(
+    scrollY,
+    [13000, 13100],
+    ["rgba(0,0,0,1)", "rgba(0,0,0,0.5)"]
+  );
+  const text2Color = useTransform(
+    scrollY,
+    [15100, 15200],
+    ["rgba(0,0,0,1)", "rgba(0,0,0,0.5)"]
+  );
+  const text3Color = useTransform(
+    scrollY,
+    [17100, 17200],
+    ["rgba(0,0,0,1)", "rgba(0,0,0,0.5)"]
+  );
+  const text4Color = useTransform(
+    scrollY,
+    [19100, 19200],
+    ["rgba(0,0,0,1)", "rgba(0,0,0,0.5)"]
+  );
+
   const testText = useTransform(
     scrollY,
-    [2000, 2500, 4000, 4200],
+    [2000, 2500, 3000, 4000],
     [0, 1, 1, 0]
   );
-  const borderRadius = useTransform(scrollY, [0, 2000], ["50%", "0%"]);
-  const isAt8000 = scrollY.get() >= 7990 && scrollY.get() <= 8010;
+  const borderRadius = useTransform(scrollY, [780, 2000], ["50%", "0%"]);
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -108,20 +137,71 @@ function App() {
           viewport={{ once: true }}
         >
           <div className="first_test">
-            {isAt8000 ? null : (
-              <motion.p style={{ opacity: testText }}>안녕하세요</motion.p>
-            )}
+            <motion.p style={{ opacity: testText, transition: "all 0.5s" }}>
+              안녕하세요
+            </motion.p>
             <motion.img
               style={{
                 height,
                 borderRadius,
                 width,
+                right,
                 top,
                 position: "sticky",
+                transition: "all 0.5s",
               }}
               src="/images/asdd.jpeg"
               alt="테스트 이미지"
             />
+            <div className="none_box"></div>
+            <motion.div className="test_box">
+              <motion.p
+                initial={{ fontWeight: 400, color: "black" }}
+                style={{
+                  opacity: text1Opacity,
+                  fontWeight: text1FontWeight,
+                  color: text1Color,
+                  transition: "all 0.5s",
+                }}
+              >
+                나는 모션 텍스트1
+              </motion.p>
+              <motion.p
+                initial={{ fontWeight: 400, color: "black" }}
+                style={{
+                  opacity: text2Opacity,
+                  fontWeight: text2FontWeight,
+                  color: text2Color,
+                  transition: "all 0.5s",
+                }}
+              >
+                나는 모션 텍스트2
+              </motion.p>
+              <motion.p
+                initial={{ fontWeight: 400, color: "black" }}
+                style={{
+                  opacity: text3Opacity,
+                  fontWeight: text3FontWeight,
+                  color: text3Color,
+                  transition: "all 0.5s",
+                }}
+              >
+                나는 모션 텍스트3
+              </motion.p>
+              <motion.p
+                initial={{ fontWeight: 400, color: "black" }}
+                style={{
+                  opacity: text4Opacity,
+                  fontWeight: text4FontWeight,
+                  color: text4Color,
+                  transition: "all 0.5s",
+                }}
+              >
+                나는 모션 텍스트4
+              </motion.p>
+            </motion.div>
+            <div className="none_box"></div>
+            <div className="last_container"></div>
           </div>
         </motion.div>
       </section>
