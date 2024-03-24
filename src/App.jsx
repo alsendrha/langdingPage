@@ -16,6 +16,7 @@ function App() {
   const scrollAnimation = useAnimation();
   const scrollText = useAnimation();
 
+  const topButton = useTransform(scrollY, [400, 500], [0, 1]);
   const top = useTransform(scrollY, [0, 2000], ["135px", "135px"]);
   const height = useTransform(scrollY, [780, 2000], ["20vh", "60vh"]);
   const width = useTransform(scrollY, [780, 2000], ["10vw", "50vw"]);
@@ -28,7 +29,18 @@ function App() {
   const text2FontWeight = useTransform(scrollY, [15100, 15200], [400, 600]);
   const text3FontWeight = useTransform(scrollY, [17100, 17200], [400, 600]);
   const text4FontWeight = useTransform(scrollY, [19100, 19200], [400, 600]);
-  const lastTextOpacity = useTransform(scrollY, [24000, 24200], [0, 1]);
+  const lastTextOpacity = useTransform(
+    scrollY,
+    [24000, 24200, 27000, 28000],
+    [0, 1, 1, 0]
+  );
+  const lastTextOpacity1 = useTransform(
+    scrollY,
+    [28500, 29000, 33000, 34000],
+    [0, 1, 1, 0]
+  );
+  const lastContainerImage = useTransform(scrollY, [27000, 28000], [1, 0]);
+  const lastContainerImage2 = useTransform(scrollY, [32000, 33000], [1, 0]);
   const text1Color = useTransform(
     scrollY,
     [13000, 13100],
@@ -74,6 +86,12 @@ function App() {
 
   return (
     <div>
+      <a href="#top">
+        <motion.div style={{ opacity: topButton }} className="top_move">
+          <img src="/images/top_arrow.svg" />
+          Top
+        </motion.div>
+      </a>
       <motion.div
         className="navbar"
         animate={scrollAnimation}
@@ -81,7 +99,9 @@ function App() {
       >
         <motion.div animate={scrollText} initial={{ opacity: 0 }}>
           <div className="logo" onClick={() => scrollTo(top)}>
-            <img src="/images/card_image.png" alt="로고 이미지" />
+            <a href="/">
+              <img src="/images/card_image.png" alt="로고 이미지" />
+            </a>
           </div>
         </motion.div>
         <motion.div
@@ -91,16 +111,24 @@ function App() {
         >
           <nav className="nav_menu">
             <ul>
-              <li>메뉴1</li>
-              <li>메뉴1</li>
-              <li>메뉴1</li>
-              <li>메뉴1</li>
+              <li>
+                <a href="#top">Home</a>
+              </li>
+              <li>
+                <a href="#about">About</a>
+              </li>
+              <li>
+                <a href="#list">List</a>
+              </li>
+              <li>
+                <a href="#contact">Contact</a>
+              </li>
             </ul>
           </nav>
         </motion.div>
         <motion.div className="progress_bar" style={{ scaleX }} />
       </motion.div>
-      <section className="top_image">
+      <section id="top" className="top_image">
         <div className="top_title_container">
           <motion.div
             initial={{ x: 0, opacity: 0 }}
@@ -148,6 +176,7 @@ function App() {
               안녕하세요
             </motion.p>
             <motion.img
+              className="test_image_first"
               style={{
                 height,
                 borderRadius,
@@ -161,7 +190,7 @@ function App() {
               alt="테스트 이미지"
             />
             <div className="none_box1"></div>
-            <motion.div className="test_box">
+            <motion.div className="test_box" id="about">
               <motion.p
                 className="test_last_text"
                 initial={{ fontWeight: 400, color: "black" }}
@@ -218,13 +247,37 @@ function App() {
               >
                 진짜냥?!
               </motion.p>
-              <img src="/images/background.jpg" alt="배경이미지" />
-              {/* <img src="/images/background.jpg" alt="배경이미지" /> */}
+              <motion.p
+                className="last_image_text2"
+                style={{ opacity: lastTextOpacity1, transition: "all 0.5s" }}
+              >
+                진짜다
+              </motion.p>
+              <div className="last_container_images">
+                <motion.img
+                  style={{
+                    opacity: lastContainerImage,
+                    transition: "all 0.5s",
+                  }}
+                  className="last_image"
+                  src="/images/background.jpg"
+                  alt="배경이미지"
+                />
+                <motion.img
+                  style={{
+                    opacity: lastContainerImage2,
+                    transition: "all 0.5s",
+                  }}
+                  className="last_image1"
+                  src="/images/last_container_image.jpg"
+                  alt="배경이미지"
+                />
+              </div>
             </div>
           </div>
         </motion.div>
       </section>
-      <section>
+      <section id="list">
         <div className="section_one">
           <div className="white_box">
             <div className="white_box_text_container">
@@ -363,10 +416,68 @@ function App() {
           </div>
         </div>
       </section>
-      <footer>
-        <div
-          style={{ width: "100%", height: "500px", backgroundColor: "green" }}
-        ></div>
+      <footer id="contact" className="footer">
+        <div className="footer_container">
+          <div className="footer_flex_icon">
+            <div className="footer_main_text">
+              <strong>대표&nbsp;</strong>
+              <span>김민영</span>
+              <span className="footer_text_line">&nbsp;|&nbsp;</span>
+              <strong>사업자번호&nbsp;</strong>
+              <span>010-00-00001</span>
+              <br />
+              <strong>직업정보제공사업 신고번호&nbsp;</strong>
+              <span> M1234567891011</span>
+              <br />
+              <strong>주소&nbsp;</strong>
+              <span>서울시 서대문구 우리집로 1길 301호</span>
+              <br />
+              <strong>전화&nbsp;</strong>
+              <span>010-1234-0001</span>
+              <span className="footer_text_line">&nbsp;|&nbsp;</span>
+              <strong>고객문의&nbsp;</strong>
+              <span>minyoung@freshvege.com</span>
+            </div>
+            <div className="footer_icon_container">
+              <div className="footer_icon">
+                <img src="/images/facebook.svg" alt="페북 아이콘" />
+              </div>
+              <div className="footer_icon">
+                <img src="/images/insta.svg" alt="인스타 아이콘" />
+              </div>
+              <div className="footer_icon">
+                <img src="/images/youtube.svg" alt="유튜브 아이콘" />
+              </div>
+              <div className="footer_icon">
+                <img src="/images/blog.svg" alt="블로그 아이콘" />
+              </div>
+            </div>
+          </div>
+          <br />
+          <br />
+          <div className="footer_last_one">
+            <div>
+              <p>제휴 문의</p>
+            </div>
+            <div>
+              <p>광고 문의</p>
+            </div>
+            <div>
+              <p>PR 문의</p>
+            </div>
+            <div>
+              <p>IR 문의</p>
+            </div>
+          </div>
+          <br />
+          <div className="footer_last_two">
+            <p>이용약관</p>
+            <p>개인정보처리방침</p>
+            <p>위치기반서비스 이용약관</p>
+            <p>이용자보호 비전과 계획</p>
+            <p>청소년보호정책</p>
+          </div>
+        </div>
       </footer>
     </div>
   );
