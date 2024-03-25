@@ -32,12 +32,12 @@ function App() {
   const text4FontWeight = useTransform(scrollY, [19100, 19200], [400, 600]);
   const lastTextOpacity = useTransform(
     scrollY,
-    [24000, 24200, 27000, 28000],
+    [24500, 24700, 27000, 28000],
     [0, 1, 1, 0]
   );
   const lastTextOpacity1 = useTransform(
     scrollY,
-    [28500, 29000, 33000, 34000],
+    [28200, 29000, 33000, 33000],
     [0, 1, 1, 0]
   );
   const lastContainerImage = useTransform(scrollY, [27000, 28000], [1, 0]);
