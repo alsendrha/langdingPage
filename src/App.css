@@ -17,6 +17,14 @@
   box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.8);
 }
 
+#nav_button{
+  display: none;
+}
+
+.nav_button_container{
+  display: none;
+}
+
 .navbar{
   box-sizing: border-box;
   padding: 0 50px 0 40px;
@@ -32,6 +40,7 @@
 a {
   text-decoration: none;
   color: black;
+  text-align: start;
 }
 
 .logo img{
@@ -104,14 +113,10 @@ a {
   margin-bottom: 50px;
 }
 
-.top_title_1 {
-  color: white;
-}
-
+.top_title_1,
 .top_title_2 {
   color: white;
 }
-
 
 /* =================== section_one =================== */
 .section_one{
@@ -380,7 +385,7 @@ a {
 .last_image_text2{
   position: fixed;
   top: 50%;
-  left: 20%;
+  left: 10%;
   z-index: 100;
   font-size: 80px;
   color: rgba(255, 255, 255, 0.8);
@@ -489,4 +494,223 @@ strong {
 .footer_last_two p {
   margin-right: 20px;
   white-space: nowrap;
+}
+
+@media screen and (max-width: 1200px) {
+
+  .nav_menu{
+    display: none;
+    box-sizing: border-box;
+    left: 0;
+    width: 100%;
+    height: 130px;
+    background-color: white;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  .nav_menu nav{
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .nav_menu nav ul {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .nav_menu ul li{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    font-weight: 300;
+  }
+
+  .nav_menu ul li:hover{
+    background-color: #8FCACA;
+  }
+
+  .nav_menu ul li a:hover {
+    color: white;
+  }
+
+  .nav_button_container{
+    display: block;
+    cursor: pointer;
+  }
+
+  #nav_button:checked~.nav_menu{
+    position: absolute;
+    display: block;
+    top: 90px;
+    
+  }
+
+  #nav_button:checked~.nav_menu ul li{
+    display: block;
+  }
+
+  /* ================ top =================== */
+
+  .top_title_container {
+    position: absolute;
+    left: 60px;
+    bottom: 160px;
+    z-index: 1;
+    font-size: 20px;
+  }
+
+  .top_main_title {
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 50px;
+  }
+
+  .top_image {
+    position: relative;
+    width: 100%;
+    height: 70vh;
+  }
+
+  /* ================ section1 =================== */
+  .test_section {
+    z-index: -1;
+  }
+
+  .first_test {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 33000px;
+    text-align: center;
+  }
+
+  .test_text_hello {
+    position: sticky;
+    top: 40%;
+    font-size: 30px;
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+  }
+
+  .test_last_text {
+    top: 32%;
+    right: 0;
+    z-index: 10;
+    font-size: 50px;
+    color: black;
+  }
+
+  .none_box1 {
+    height: 4000px;
+  }
+
+  .none_box2 {
+    height: 500px;
+  }
+
+  .test_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    position: sticky;
+    padding-right: 20px;
+    top: 15.3%;
+    left: 60%;
+    width: 500px;
+    height: 60vh;
+  }
+
+  .test_box p {
+    position: static;
+  }
+
+  .last_container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 10000px;
+    background-color: white;
+  }
+
+  .last_image_text {
+    position: fixed;
+    top: 50%;
+    right: 10%;
+    z-index: 100;
+    font-size: 80px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .last_image_text2 {
+    position: fixed;
+    top: 50%;
+    left: 20%;
+    z-index: 100;
+    font-size: 80px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: bold;
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .last_container_images {
+    top: 90px;
+    position: sticky;
+  }
+
+  .last_image {
+    position: absolute;
+    left: 0;
+    width: 99vw;
+    height: calc(100vh - 90px);
+    z-index: 1000;
+  }
+
+  .last_image1 {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 111vh;
+    object-position: bottom 200px right 0;
+  }
+
+  /* ================ section2 =================== */
+ .white_box_text_container {
+   position: absolute;
+   top: 40%;
+   left: 5%;
+ }
+
+  .white_box_text_title {
+    font-size:25px;
+    font-weight: bold;
+  }
+
+  .white_box_text_sub_title {
+    line-height: 40px;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .section_one_image {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 800px;
+    border-radius: 12px 0 0 12px;
+    object-fit: cover;
+    z-index: 10;
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.4);
+  }
 }

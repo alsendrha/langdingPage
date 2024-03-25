@@ -6,6 +6,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
+import { useState } from "react";
 import "./App.css";
 import RuleItem from "./components/RuleItem";
 import SectionTwoRuleItem from "./components/SectionTwoRuleItem";
@@ -15,7 +16,7 @@ function App() {
   const { scrollYProgress, scrollY } = useScroll();
   const scrollAnimation = useAnimation();
   const scrollText = useAnimation();
-
+  const [isChecked, setIsChecked] = useState(false);
   const topButton = useTransform(scrollY, [400, 500], [0, 1]);
   const top = useTransform(scrollY, [0, 2000], ["135px", "135px"]);
   const height = useTransform(scrollY, [780, 2000], ["20vh", "60vh"]);
@@ -104,6 +105,20 @@ function App() {
             </a>
           </div>
         </motion.div>
+        <motion.label
+          animate={scrollText}
+          initial={{ opacity: 0 }}
+          htmlFor="nav_button"
+          className="nav_button_container"
+          onClick={() => setIsChecked(!isChecked)}
+        >
+          {!isChecked ? (
+            <img src="/images/hamburger.svg" alt="네비게이션 버튼" />
+          ) : (
+            <img src="/images/close.svg" alt="네비게이션 버튼" />
+          )}
+        </motion.label>
+        <input type="checkbox" id="nav_button" />
         <motion.div
           className="nav_menu"
           animate={scrollText}
